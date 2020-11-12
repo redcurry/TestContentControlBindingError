@@ -1,0 +1,26 @@
+﻿<Window x:Class="TestContentControlBindingError.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:l="clr-namespace:TestContentControlBindingError"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel>
+        <Button
+            Content="Toggle contact info"
+            Command="{Binding SwapContactInfoCommand, Mode=OneWay}"
+            />
+
+        <ContentControl Content="{Binding ContactInfo}">
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type l:EmailContactInfoViewModel}">
+                    <l:EmailAddressView />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type l:AddressContactInfoViewModel}">
+                    <l:HomeAddressView />
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
+    </StackPanel>
+</Window>
